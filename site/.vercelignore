@@ -1,0 +1,7 @@
+# Upload only the site's own files; everything else in this folder stays local.
+/*
+!index.html
+!proof.html
+!*.js
+!*.css
+!icon.svg

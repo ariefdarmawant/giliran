@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Giliran, proof on BNB Chain</title>
+<meta name="description" content="Giliran's numbers, read straight from BNB Chain: circles created, Agent ID wallets that paid, payouts and every transaction.">
+<link rel="icon" href="./icon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+<header class="nav is-past-hero">
+  <div class="container nav__row">
+    <a class="nav__word wm" href="./" aria-label="Giliran, beranda"><svg class="wm__mark" viewBox="0 0 32 32" aria-hidden="true"><path class="wm__ring" d="M26.34 14.18 A10.5 10.5 0 1 1 17.82 5.66"/><circle class="wm__turn" cx="23.42" cy="8.58" r="3.2"/></svg><span class="wm__word" aria-hidden="true">g<span class="wm__i">ı</span>l<span class="wm__i wm__i--turn">ı</span>ran</span></a>
+    <nav class="nav__links" aria-label="Utama"><a href="./#cara" data-p="navHow">Cara kerja</a><a href="./#agen" data-p="navSetup">Siapkan agen</a><a href="./#tanya" data-p="navFaq">Tanya jawab</a><a href="./proof.html" aria-current="page" data-p="navProof">Bukti</a><p class="nav__sheet-note" data-p="risk">Nilai USDT bisa berubah dan transaksi di blockchain nggak bisa dibatalkan. Ikut arisan hanya dengan orang yang kamu kenal.</p><a class="btn btn--primary nav__sheet-cta" href="./#mulai" data-p="cta">Mulai arisan</a></nav>
+    <div class="nav__end"><button class="lang" type="button" data-lang-toggle aria-label="Switch to English">EN</button><a class="btn btn--primary nav__cta" href="./#mulai" data-p="cta">Mulai arisan</a><button class="menu" type="button" data-menu aria-expanded="false" aria-label="Menu"><span></span><span></span></button></div>
+  </div>
+</header>
+<main id="main">
+  <section class="proof" data-proof aria-labelledby="proof-title" aria-live="polite">
+    <div class="container proof__grid">
+      <div class="proof__head">
+        <h1 id="proof-title" data-p="title">Bukti di BNB Chain</h1>
+        <p class="lead" data-proof-note>Setiap angka di sini dibaca langsung dari kontrak, bukan diketik.</p>
+      </div>
+      <dl class="proof__stats" data-proof-stats></dl>
+      <p class="proof__goal" data-proof-goal></p>
+      <div class="proof__live">
+        <figure class="proof__newest">
+          <svg class="ring ring--light ring--small chart" viewBox="-70 0 740 600" data-proof-ring role="img"></svg>
+          <p class="ring-legend" data-proof-legend></p>
+          <figcaption data-proof-ring-cap></figcaption>
+        </figure>
+        <div class="proof__feed">
+          <h2 data-p="payments">Transaksi terbaru</h2>
+          <ul class="proof__payments" data-proof-payments></ul>
+          <p class="proof__payments-note" data-proof-payments-note></p>
+          <p><a data-proof-alltx href="" data-p="alltx">Semua transaksi di BscScan</a></p>
+        </div>
+      </div>
+      <form class="proof__record" data-record aria-labelledby="riwayat-title" id="riwayat">
+        <h2 id="riwayat-title" data-p="recordTitle">Cek riwayat bayar sebuah nama .ai</h2>
+        <div class="proof__record-row">
+          <label class="visually-hidden" for="record-name" data-p="recordLabel">Nama .ai</label>
+          <input id="record-name" name="name" type="text" placeholder="sari.ai" autocomplete="off" spellcheck="false">
+          <button class="btn btn--primary" type="submit" data-p="recordGo">Cek</button>
+        </div>
+        <p class="proof__record-out" data-record-out aria-live="polite"></p>
+      </form>
+      <div class="proof__list">
+        <h2 data-p="circles">Arisan</h2>
+        <ul class="proof__circles" data-proof-circles></ul>
+        <p hidden><a data-proof-factory href="" data-p="factory">Kontrak Giliran, kode terverifikasi di BscScan</a></p>
+      </div>
+    </div>
+  </section>
+</main>
+<footer class="foot">
+  <div class="container foot__grid">
+    <p class="foot__word wm"><svg class="wm__mark" viewBox="0 0 32 32" aria-hidden="true"><path class="wm__ring" d="M26.34 14.18 A10.5 10.5 0 1 1 17.82 5.66"/><circle class="wm__turn" cx="23.42" cy="8.58" r="3.2"/></svg><span class="wm__word" aria-hidden="true">g<span class="wm__i">ı</span>l<span class="wm__i wm__i--turn">ı</span>ran</span><span class="visually-hidden">Giliran</span></p>
+    <ul class="foot__links">
+      <li><a data-proof-contract href="" data-p="contract">Kontrak di BscScan</a></li>
+      <li data-repo hidden><a data-repo-link href="" data-p="code">Kode di GitHub</a></li>
+      <li><a href="./proof.html" data-p="footProof">Bukti di BNB Chain</a></li>
+      <li><a href="https://www.binance.com/en/support/announcement/detail/95f5dbe0ea674a48a739b59e046648bf" data-p="agentId">Tentang Binance Agent ID</a></li>
+    </ul>
+    <p class="foot__risk" data-p="risk">Nilai USDT bisa berubah dan transaksi di blockchain nggak bisa dibatalkan. Ikut arisan hanya dengan orang yang kamu kenal.</p>
+  </div>
+</footer>
+<script src="./config.js"></script>
+<script src="./ring.js"></script>
+<script src="./proof.js"></script>
+</body>
+</html>

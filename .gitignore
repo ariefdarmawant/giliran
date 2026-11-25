@@ -1,0 +1,7 @@
+node_modules/
+.DS_Store
+
+# build output
+contracts/out/
+contracts/cache/
+contracts/broadcast/

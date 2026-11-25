@@ -1,0 +1,11 @@
+{
+  "chainId": 56,
+  "giliran": "0x5D1050e1Be414c8798355fF727900a7d8bD0615b",
+  "token": "0x55d398326f99059fF775485246999027B3197955",
+  "block": 135617358,
+  "tx": "0xd6cb5a8490c789b842a57ca32d7c5e6c3bec26691453e9de871e3b8acd2dc229",
+  "deployedBy": "persons.ai (Agentic Wallet 0xF7597958eEBacD11b63691114c93367B1D002435) through the CREATE2 deployer 0x4e59b44847b379578588920cA78FbF26c0B4956C",
+  "salt": "0x67696c6972616e2e763400000000000000000000000000000000000000000000",
+  "compiler": "solc 0.8.28, optimizer 200 runs, via-ir",
+  "verified": "Sourcify exact match (creation and runtime), 2026-11-25; forwarded to BscScan by Sourcify"
+}

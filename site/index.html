@@ -1,0 +1,261 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Giliran, the savings circle nobody can run off with</title>
+<meta name="description" content="Rotating savings circles (arisan) between Binance Agent ID .ai names on BNB Chain. Your agent pays each due from your Agentic Wallet after you say yes; each payout goes only to the holder of that round's name. Nobody holds the money.">
+<link rel="icon" href="./icon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="./styles.css">
+<script>document.documentElement.classList.add('js');</script>
+</head>
+<body>
+<a class="skip" href="#main" data-i18n="skip">Langsung ke isi</a>
+
+<header class="nav">
+  <div class="container nav__row">
+    <a class="nav__word wm" href="./" aria-label="Giliran, beranda"><svg class="wm__mark" viewBox="0 0 32 32" aria-hidden="true"><path class="wm__ring" d="M26.34 14.18 A10.5 10.5 0 1 1 17.82 5.66"/><circle class="wm__turn" cx="23.42" cy="8.58" r="3.2"/></svg><span class="wm__word" aria-hidden="true">g<span class="wm__i">ı</span>l<span class="wm__i wm__i--turn">ı</span>ran</span></a>
+    <nav class="nav__links" aria-label="Utama">
+      <a href="#cara" data-i18n="nav.how">Cara kerja</a>
+      <a href="#agen" data-i18n="nav.setup">Siapkan agen</a>
+      <a href="#tanya" data-i18n="nav.faq">Tanya jawab</a>
+      <a href="./proof.html" data-i18n="nav.chain">Bukti</a>
+      <p class="nav__sheet-note" data-i18n="f.risk">Nilai USDT bisa berubah dan transaksi di blockchain nggak bisa dibatalkan. Ikut arisan hanya dengan orang yang kamu kenal.</p>
+      <a class="btn btn--primary nav__sheet-cta" href="#mulai" data-i18n="cta.start">Mulai arisan</a>
+    </nav>
+    <div class="nav__end">
+      <button class="lang" type="button" data-lang-toggle aria-label="Switch to English">EN</button>
+      <a class="btn btn--primary nav__cta" href="#mulai" data-i18n="cta.start">Mulai arisan</a>
+      <button class="menu" type="button" data-menu aria-expanded="false" aria-label="Menu"><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+  <!-- 1. Hero: the promise, set big; it steps back as you scroll -->
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="container hero__inner">
+      <h1 id="hero-title" data-i18n="hero.title">Arisan yang nggak bisa dibawa kabur.</h1>
+      <p class="lead" data-i18n="hero.lead">Semua iuran masuk ke kontrak tanpa pemilik, lalu cair ke yang dapat giliran.</p>
+      <div class="hero__actions">
+        <a class="btn btn--primary" href="#mulai" data-i18n="cta.start">Mulai arisan</a>
+        <a class="btn hero__how" href="#cara" data-i18n="cta.how">Tunjukkan caranya</a>
+      </div>
+      <p class="hero__for" data-i18n="hero.for">Dibangun di atas Binance Agent ID. Uang cuma cair ke pemilik nama .ai.</p>
+    </div>
+  </section>
+
+  <!-- An invitation (?c=<circle>) replaces the landing's sections; it sits after the hero so the page leads with the hero otherwise -->
+  <section class="invite" data-invite hidden aria-labelledby="invite-title">
+    <div class="container invite__grid">
+      <div class="invite__text">
+        <h1 id="invite-title" class="invite__title" data-invite-title>Kamu diundang ke arisan</h1>
+        <dl class="invite__terms" data-invite-terms></dl>
+        <svg class="ring ring--light ring--small chart" viewBox="-70 0 740 600" data-invite-ring aria-hidden="true"></svg>
+        <p class="ring-legend" data-invite-legend></p>
+        <p class="invite__joined" data-invite-joined></p>
+        <ul class="invite__members" data-invite-members></ul>
+      </div>
+      <div class="invite__act">
+        <h2 class="invite__act-title" data-i18n="i.joinTitle">Cara ikut</h2>
+        <p class="invite__total" data-invite-total></p>
+        <ol class="steps" data-invite-steps hidden></ol>
+        <a class="invite__setup" href="./#agen" data-i18n="i.setup">Pertama kali? Siapkan agenmu</a>
+        <div class="say">
+          <p class="say__label" data-invite-say-label hidden data-i18n="i.sayLabel">Pesanmu</p>
+          <p class="chat__me invite__say" data-invite-say hidden></p>
+        </div>
+        <button class="btn btn--primary" type="button" data-invite-copy hidden data-i18n="i.copy">Salin pesan untuk agen</button>
+        <p class="result__risk" data-invite-risk hidden data-i18n="s.risk">USDT bisa naik turun. Pembayaran nggak bisa dibatalkan.</p>
+        <p class="invite__note" data-invite-note role="status"></p>
+        <button class="btn" type="button" data-invite-retry hidden data-i18n="i.retry">Coba lagi</button>
+        <button class="btn invite__cal" type="button" data-invite-cal hidden data-i18n="i.cal">Masukkan jadwalnya ke kalender</button>
+        <a class="btn invite__share" data-invite-share hidden href="" target="_blank" rel="noopener" data-i18n="i.share">Kirim undangan ke grup WA</a>
+        <form class="invite__find" data-invite-find hidden><label for="find-c" data-i18n-dyn="findLabel">Nomor arisan</label><span class="share__num"><span aria-hidden="true">#</span><input id="find-c" name="c" type="text" inputmode="numeric" maxlength="6" autocomplete="off"></span><button class="btn btn--primary" type="submit">Buka</button></form>
+        <a class="invite__about" href="./" data-i18n="i.about">Apa itu Giliran?</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. Where the money goes: a presentation. The ring zooms in, pins, and each beat of scroll moves the money -->
+  <section class="money" id="cara" aria-labelledby="cara-title">
+    <div class="container">
+      <h2 id="cara-title" class="money__title" data-i18n="m.title">Siapa yang pegang uangnya? Kontrak tanpa pemilik.</h2>
+    </div>
+    <div class="money__track">
+      <div class="money__stage" data-money-stage data-step="0">
+        <ol class="money__stops">
+          <li class="money__stop"><div><h3 data-i18n="m1.t">Tiap anggota bayar dari dompetnya sendiri.</h3><p data-i18n="m1.d">Agennya minta izin dulu. Uang baru pindah setelah dia bilang ya.</p></div></li>
+          <li class="money__stop"><div><h3 data-i18n="m2.t">Kontrak yang memegang uangnya.</h3><p data-i18n="m2.d">Ketua nggak pernah memegangnya. Kontraknya nggak punya fungsi untuk menarik uang, buat siapa pun, termasuk pembuat Giliran.</p></div></li>
+          <li class="money__stop"><div><h3 data-i18n="m3.t">Cair cuma ke yang dapat giliran.</h3><p data-i18n="m3.d">Kontrak bertanya ke registri Agent ID siapa pemilik sari.ai, lalu mengirim seluruh 50 USDT ke dompet itu.</p></div></li>
+        </ol>
+        <figure class="money__figure">
+          <svg class="ring chart" viewBox="-70 0 740 600" role="img" aria-label="Contoh arisan lima orang" data-money-ring></svg>
+          <p class="ring-legend money__key" data-money-key></p>
+          <figcaption class="money__note" data-money-note data-i18n="m.note">Contoh: putaran ke-3, lima teman, iuran 10 USDT. rina.ai dan dodi.ai sudah dapat giliran.</figcaption>
+        </figure>
+      </div>
+    </div>
+    <div class="container">
+      <ul class="money__facts">
+        <li><b data-i18n="mf1.t">Kocokan yang adil</b><span data-i18n="mf1">Tak ada yang bisa lihat siapa yang keluar sampai kocokan ditutup.</span></li>
+        <li><b data-i18n="mf2.t">Uang kocokan utuh</b><span data-i18n="mf2">Yang dapat giliran menerima iuran semua anggota. Giliran tidak memotong apa pun.</span></li>
+        <li><b data-i18n="mf3.t">Riwayat bayar</b><span data-i18n="mf3">Setiap bayaran dan yang terlewat tercatat di nama .ai, yang tidak bisa dijual atau dipindah. Cek namanya sebelum mengajak.</span> <a href="./proof.html#riwayat" data-i18n="p4.link">Cek riwayat sebuah nama</a></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 4. Start your own: the form, your circle, and the message for your agent -->
+  <section class="start" id="mulai" aria-labelledby="mulai-title">
+    <div class="container start__grid">
+      <div class="start__intro">
+        <h2 id="mulai-title" data-i18n="s.title">Mulai arisanmu sendiri</h2>
+        <p class="lead" data-i18n="s.lead">Atur, lalu kirim pesannya ke agenmu.</p>
+        <p class="needs" data-i18n="s.needsLine">Tiap anggota perlu akun Binance, nama .ai, dan USDT di Agentic Wallet-nya.</p>
+      </div>
+      <form class="composer" data-composer>
+        <div class="field">
+          <label for="f-members" data-i18n="s.members">Nama .ai anggota</label>
+          <textarea id="f-members" name="members" rows="2" autocomplete="off" spellcheck="false" placeholder="rina.ai, dodi.ai, sari.ai, fajar.ai, mega.ai" aria-describedby="members-error"></textarea>
+          <p class="field__error" id="members-error" data-members-error></p>
+        </div>
+        <div class="field">
+          <label for="f-due" data-i18n="s.due">Besar iuran tiap putaran (USDT)</label>
+          <input id="f-due" name="due" type="number" inputmode="decimal" min="0.01" max="100" step="0.01" value="10" aria-describedby="due-error">
+          <p class="seg__hint" data-due-hint aria-live="polite"></p>
+          <p class="field__error" id="due-error" data-due-error></p>
+        </div>
+        <fieldset class="seg">
+          <legend data-i18n="s.every">Jadwal</legend>
+          <div class="seg__row">
+            <input type="radio" name="every" id="e1" value="daily"><label for="e1" data-i18n="s.daily">Harian</label>
+            <input type="radio" name="every" id="e2" value="weekly"><label for="e2" data-i18n="s.weekly">Mingguan</label>
+            <input type="radio" name="every" id="e3" value="monthly" checked><label for="e3" data-i18n="s.monthlyOpt">Bulanan</label>
+          </div>
+        </fieldset>
+        <fieldset class="seg">
+          <legend data-i18n="s.order">Urutan narik</legend>
+          <div class="seg__row">
+            <input type="radio" name="order" id="o1" value="draw" checked><label for="o1" data-i18n="s.draw">Dikocok</label>
+            <input type="radio" name="order" id="o2" value="fixed"><label for="o2" data-i18n="s.fixed">Urutan daftar</label>
+          </div>
+        </fieldset>
+      </form>
+      <div class="share share--below">
+          <p class="share__title" data-i18n="s.shareTitle">Lalu, undang grupmu</p>
+          <label for="share-num" data-i18n="s.shareLabel">Tulis nomor arisan dari balasan agenmu:</label>
+          <div class="share__row">
+            <span class="share__num"><span aria-hidden="true">#</span><input id="share-num" data-share-num type="text" inputmode="numeric" pattern="[1-9][0-9]*" maxlength="14" autocomplete="off" placeholder="mis. 12"></span>
+            <a class="btn" data-share-wa aria-disabled="true" target="_blank" rel="noopener" data-i18n="s.shareGo">Kirim ke WA</a>
+          </div>
+          <p class="field__error" data-share-error></p>
+          <p class="share__next" data-share-next hidden><a class="share__open" data-share-open href="./"></a> <span data-share-join></span></p>
+          <p class="share__window" data-i18n="s.window">Anggota punya 2 hari untuk ikut dengan membayar iuran pertama. Butuh lebih lama? Minta agenmu memakai tanggal mulai yang lain.</p>
+        </div>
+
+      <div class="result" data-result>
+        <span class="result__tag" data-i18n="s.example">Contoh</span>
+        <svg class="ring ring--light ring--small chart" viewBox="-70 20 740 560" data-composer-ring aria-label="Preview of your circle"></svg>
+        <div class="chat" aria-label="Pesan untuk agenmu">
+          <p class="chat__me" id="say" data-say></p>
+          <p class="chat__agent"><span data-i18n="s.reply">Siap, arisan #7 sudah dibuat. Aku minta izinmu dulu sebelum bayar.</span><small data-i18n="s.replyNote">Contoh balasan</small></p>
+        </div>
+        <p class="result__risk" data-i18n="s.risk">USDT bisa naik turun. Pembayaran nggak bisa dibatalkan.</p>
+        <div class="result__bar">
+          <button class="btn btn--primary" type="button" data-copy data-i18n="s.copy">Salin pesan untuk agen</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <section class="setup" id="agen" aria-labelledby="agen-title">
+    <div class="container">
+      <div class="setup__head">
+        <h2 id="agen-title" data-i18n="a.title">Siapkan agenmu, sekali saja</h2>
+        <p data-i18n="a.lead">Setiap anggota butuh ini, termasuk yang bikin arisan. Kira-kira lima menit.</p>
+      </div>
+      <ol class="setup__steps">
+        <li><b data-i18n="a.s1.t">Klaim nama .ai</b><span data-i18n="a.s1">Di aplikasi Binance: Wallet, banner di beranda, lalu Agent ID. Gratis, cuma biaya jaringan kecil.</span></li>
+        <li><b data-i18n="a.s2.t">Nyalakan Agentic Wallet dan Developer Mode</b><span data-i18n="a.s2">Di halaman Agentic Wallet, buka Settings, lalu Developer Mode. Isi USDT secukupnya untuk iuran.</span></li>
+        <li><b data-i18n="a.s3.t">Pasang skill di agenmu</b><span data-i18n="a.s3">Jalankan di terminal komputer tempat agenmu berjalan: skill Binance untuk dompetnya, lalu skill Giliran.</span>
+          <div class="cmd"><code>npx skills add binance/binance-skills-hub/skills/binance-web3/binance-agentic-wallet</code><button class="btn cmd__copy" type="button" data-copy-cmd data-i18n="a.copy">Salin</button></div>
+          <div class="cmd" data-giliran-cmd hidden><code></code><button class="btn cmd__copy" type="button" data-copy-cmd data-i18n="a.copy">Salin</button></div>
+          <p class="cmd cmd--soon" data-giliran-soon data-i18n="a.soon">Skill Giliran: perintah pasangnya segera muncul di sini.</p>
+        </li>
+        <li><b data-i18n="a.s4.t">Tempel pesan dari Giliran</b><span data-i18n="a.s4">Dari composer di atas atau dari link undangan. Agen membaca arisannya dan minta izinmu untuk setiap pembayaran.</span></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="faq" id="tanya" aria-labelledby="tanya-title">
+    <div class="container">
+      <h2 id="tanya-title" data-i18n="q.title">Yang biasanya ditanya di grup WA</h2>
+      <div class="qa">
+        <details class="qa__item">
+          <summary><span data-i18n="q1.t">Kalau ada yang telat bayar?</span></summary>
+          <p data-i18n="q1.d">Bayaran yang telat masih dihitung untuk putarannya selama putaran itu belum ditutup. Setelah batas waktu, pembayaran pertama dari siapa pun, atau siapa pun yang membuka kocokannya, menutup putaran itu; bayaran sesudahnya masuk ke putaran berikutnya dan yang terlewat tercatat di namanya. Iuran yang terlewat sebelum gilirannya dipotong dari uang nariknya dan dikirim ke yang kurang.</p>
+        </details>
+        <details class="qa__item">
+          <summary><span data-i18n="q2.t">Kalau ada yang kabur setelah narik?</span></summary>
+          <p data-i18n="q2.d">Arisan mana pun tidak bisa mencegahnya, di chain maupun tidak. Bedanya di Giliran: setiap iuran yang terlewat tercatat di nama .ai-nya selamanya, dan nama itu tidak bisa dijual atau dipindah, jadi dia tidak bisa mulai dari nol. Ajak orang yang riwayatnya sudah kamu cek.</p>
+        </details>
+        <details class="qa__item">
+          <summary><span data-i18n="q3.t">Anggotaku belum punya Binance?</span></summary>
+          <ol class="steps" data-i18n-list="q3.steps">
+            <li>Pasang aplikasi Binance.</li>
+            <li>Buka Wallet, klaim nama .ai (gratis, ada biaya jaringan kecil).</li>
+            <li>Nyalakan Agentic Wallet, lalu Developer Mode di pengaturannya. Dengan Developer Mode, agenmu cuma bisa bayar yang kamu setujui, satu per satu.</li>
+            <li>Pasang skill Giliran di agenmu, lalu tempel pesan dari link undangan. Agen minta izin untuk iuran arisan ini (uangnya tetap di dompetmu, diambil satu iuran tiap kamu bilang ya), lalu bayar iuran pertama.</li>
+          </ol>
+        </details>
+        <details class="qa__item">
+          <summary><span data-i18n="q4.t">Uangnya bisa masuk ke rekening bank?</span></summary>
+          <p data-i18n="q4.d">Bisa, lewat Binance. Uang arisan masuk ke Agentic Wallet-mu dalam USDT; kirim ke akun Binance-mu, lalu tarik seperti biasa.</p>
+        </details>
+        <details class="qa__item">
+          <summary><span data-i18n="q5.t">Kalau HP-ku hilang?</span></summary>
+          <p data-i18n="q5.d">Giliranmu ikut nama .ai-mu, jadi ganti HP nggak mengubah apa pun. Masuk lagi ke Binance, agenmu kembali.</p>
+        </details>
+        <details class="qa__item">
+          <summary><span data-i18n="q6.t">Kenapa gratis?</span></summary>
+          <p data-i18n="q6.d">Kontraknya tanpa pemilik dan nggak memotong apa pun; yang dibayar cuma biaya jaringan BNB Chain yang kecil di tiap transaksi. Kode kontraknya terverifikasi dan bisa dibaca siapa pun, dengan lisensi MIT.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. A closing call to start -->
+  <section class="closing" aria-labelledby="closing-title">
+    <div class="container closing__inner">
+      <h2 id="closing-title" data-i18n="c.title">Arisan berikutnya, tanpa ketua yang pegang uang.</h2>
+      <p class="lead" data-i18n="c.lead">Atur arisannya, kirim satu pesan ke agenmu, lalu bagikan tautannya.</p>
+      <a class="btn btn--primary" href="#mulai" data-i18n="cta.start">Mulai arisan</a>
+    </div>
+  </section>
+
+</main>
+
+<footer class="foot">
+  <div class="container foot__grid">
+    <p class="foot__word wm"><svg class="wm__mark" viewBox="0 0 32 32" aria-hidden="true"><path class="wm__ring" d="M26.34 14.18 A10.5 10.5 0 1 1 17.82 5.66"/><circle class="wm__turn" cx="23.42" cy="8.58" r="3.2"/></svg><span class="wm__word" aria-hidden="true">g<span class="wm__i">ı</span>l<span class="wm__i wm__i--turn">ı</span>ran</span><span class="visually-hidden">Giliran</span></p>
+    <ul class="foot__links">
+      <li data-contract hidden><a data-contract-link href="" data-i18n="f.contract">Kontrak di BscScan</a></li>
+      <li data-repo hidden><a data-repo-link href="" data-i18n="f.code">Kode di GitHub</a></li>
+      <li><a href="./proof.html" data-i18n="f.proof">Bukti di BNB Chain</a></li>
+      <li><a href="https://www.binance.com/en/support/announcement/detail/95f5dbe0ea674a48a739b59e046648bf" data-i18n="f.agentId">Tentang Binance Agent ID</a></li>
+    </ul>
+    <p class="foot__risk" data-i18n="f.risk">Nilai USDT bisa berubah dan transaksi di blockchain nggak bisa dibatalkan. Ikut arisan hanya dengan orang yang kamu kenal.</p>
+  </div>
+</footer>
+
+<script src="./config.js"></script>
+<script src="./i18n.js"></script>
+<script src="./ring.js"></script>
+<script src="./calendar.js"></script>
+<script src="./app.js"></script>
+</body>
+</html>
